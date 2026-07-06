@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML Input Types</title>
+</head>
+
+<body>
+
+    <h2 align="center">HTML Input Types Example</h2>
+
+    <form>
+
+        <table border="1" cellpadding="10" align="center">
+
+            <tr>
+                <td>Name</td>
+                <td>
+                    <input type="text" name="username" placeholder="Enter your name">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Password</td>
+                <td>
+                    <input type="password" name="password" placeholder="Enter password">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+                <td>
+                    <input type="email" name="email" placeholder="abc@gmail.com">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Age</td>
+                <td>
+                    <input type="number" name="age" min="1" max="100">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Phone</td>
+                <td>
+                    <input type="tel" name="phone" placeholder="9876543210">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Date of Birth</td>
+                <td>
+                    <input type="date" name="dob">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Time</td>
+                <td>
+                    <input type="time" name="time">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Date & Time</td>
+                <td>
+                    <input type="datetime-local" name="datetime">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" name="gender" value="Male"> Male
+                    <input type="radio" name="gender" value="Female"> Female
+                </td>
+            </tr>
+
+            <tr>
+                <td>Hobbies</td>
+                <td>
+                    <input type="checkbox" name="hobby" value="Reading"> Reading
+                    <input type="checkbox" name="hobby" value="Sports"> Sports
+                    <input type="checkbox" name="hobby" value="Music"> Music
+                </td>
+            </tr>
+
+            <tr>
+                <td>Upload File</td>
+                <td>
+                    <input type="file" name="file">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit" value="Submit" onclick="alert('Hello!')">
+                        Submit
+                    </button>
+
+                    <input type="reset" value="Reset">
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+
+</body>
+</html>
