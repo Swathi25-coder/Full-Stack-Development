@@ -2,93 +2,82 @@
 <html lang="en">
 
 <head>
-    <!-- meta style link title -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>My Travel Web Page</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        header {
-            background-color: #7f1ca3;
-            color: white;
-            padding: 20px;
-        }
-
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .container img {
-            margin-bottom: 10px;
-        }
-
-        .container h2 {
-            margin-bottom: 5px;
-        }
-
-        nav {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        nav ul {
-            list-style: none;
-        }
-
-        nav ul li {
-            display: inline-block;
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-        }
-
-        nav ul li a:hover {
-            color: yellow;
-        }
-    </style>
+    <title>9700864760.xyz | Welcome</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Header Section -->
-    <header>
-    <div class="container">
-        <!-- Logo + Website Name -->
-        <div>
-            <img src="./flight.png" alt="Flight Logo" width="60" height="60">
-
-            <h2>Travel Discovery</h2>
-
-            <p>Explore. Discover. Journey.</p>
+    <header class="container">
+        <div class="site-brand">
+            <span class="brand-logo">
+                <img src="./flight.png" alt="Logo">
+            </span>
+            <div>
+                <div class="site-name">9700864760.xyz</div>
+                <div style="font-size:0.9rem; color:#64748b;">Custom domain landing page</div>
+            </div>
         </div>
-
-        <!-- Navigation Menu -->
         <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Flights</a></li>
-                <li><a href="#">Hotels</a></li>
-                <li><a href="#">Buses</a></li>
-                <li><a href="#">Destinations</a></li>
-                <li><a href="#">Offers</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
+            <a href="#features">Features</a>
+            <a href="#projects">Projects</a>
+            <a class="primary-cta" href="#contact">Get Started</a>
         </nav>
-    </div>
     </header>
 
+    <main class="container">
+        <section class="hero">
+            <h1>Welcome to your custom domain UI for <span style="color:#4f46e5;">9700864760.xyz</span></h1>
+            <p>Showcase your full-stack assignments, notes, and project demos all from one beautiful landing page. This is the homepage visitors see when they open your custom domain.</p>
+            <div class="hero-actions">
+                <a class="primary-cta" href="https://github.com/Swathi25-coder/Full-Stack-Development">View GitHub Repo</a>
+                <a class="btn-secondary" href="#features">Explore the page</a>
+            </div>
+
+            <div class="feature-grid" id="features">
+                <article class="card">
+                    <h3>Full Stack Track</h3>
+                    <p>Organize assignments, notes, and code work for your full-stack learning path in one place.</p>
+                </article>
+                <article class="card">
+                    <h3>JPP Track</h3>
+                    <p>Keep your JPP assignments and practice code together with easy access from your domain.</p>
+                </article>
+                <article class="card">
+                    <h3>Live Custom Domain</h3>
+                    <p>Use this repository as your GitHub Pages source and serve the site at 9700864760.xyz.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section-alt" id="projects">
+            <h2>UI designed for your custom domain</h2>
+            <p>This landing page is built as the root site for your domain. It is mobile-friendly, easy to update, and ready for GitHub Pages deployment.</p>
+            <div class="grid-two">
+                <div class="story-card">
+                    <h3>What you can add here</h3>
+                    <p>Add your content below by editing <strong>index.html</strong> and <strong>style.css</strong>. You can link directly to the folders in your repo, show your latest assignments, or add contact info.</p>
+                </div>
+                <div class="story-card">
+                    <h3>How visitors see it</h3>
+                    <p>Anyone who visits <strong>9700864760.xyz</strong> will land on this page. It gives your portfolio a professional home and makes your project repo feel like a real website.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-alt" id="contact">
+            <div class="story-card">
+                <h2>Ready to publish?</h2>
+                <p>On GitHub, set Pages source to <strong>main</strong> branch and <strong>root</strong> folder. Then your custom domain will show this UI automatically.</p>
+                <p>If you want, I can also help you make this page a full portfolio with buttons linking to your assignment sections and project examples.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        Built for <strong>9700864760.xyz</strong> — your custom GitHub Pages domain.
+    </footer>
 </body>
 
 </html>

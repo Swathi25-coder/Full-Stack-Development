@@ -1,0 +1,220 @@
+/* Root homepage styles for custom domain UI */
+:root {
+    font-family: 'Inter', system-ui, Arial, sans-serif;
+    color: #111827;
+    background: radial-gradient(circle at top left, rgba(81, 80, 242, 0.16), transparent 35%),
+                linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+}
+
+header {
+    padding: 1.25rem 0;
+}
+
+.site-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.brand-logo {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.site-brand img {
+    width: 32px;
+    height: 32px;
+}
+
+.site-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+nav a {
+    font-weight: 600;
+    color: #334155;
+}
+
+nav a:hover,
+nav .primary-cta:hover {
+    color: #4f46e5;
+}
+
+.primary-cta {
+    padding: 0.9rem 1.4rem;
+    background: #4f46e5;
+    color: white;
+    border-radius: 999px;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.primary-cta:hover {
+    transform: translateY(-1px);
+    background: #4338ca;
+}
+
+.hero {
+    padding: 5rem 0 4rem;
+}
+
+.hero h1 {
+    font-size: clamp(2.75rem, 4vw, 4.25rem);
+    line-height: 0.95;
+    max-width: 760px;
+    margin-bottom: 1.25rem;
+}
+
+.hero p {
+    max-width: 680px;
+    font-size: 1.05rem;
+    color: #475569;
+    margin-bottom: 2rem;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.btn-secondary {
+    padding: 0.95rem 1.4rem;
+    border: 1px solid rgba(79, 70, 229, 0.16);
+    border-radius: 999px;
+    background: white;
+    color: #334155;
+    font-weight: 600;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: 3rem;
+}
+
+.card {
+    padding: 1.75rem;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.06);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.85rem;
+}
+
+.card p {
+    color: #64748b;
+}
+
+.section-alt {
+    padding: 3.5rem 0;
+}
+
+.section-alt h2 {
+    font-size: clamp(2rem, 3vw, 2.75rem);
+    margin-bottom: 1rem;
+}
+
+.section-alt p {
+    max-width: 720px;
+    color: #475569;
+    margin-bottom: 2rem;
+}
+
+.grid-two {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.story-card {
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, #eef2ff 0%, #ffffff 100%);
+    border: 1px solid rgba(99, 102, 241, 0.12);
+}
+
+.story-card h3 {
+    margin-bottom: 1rem;
+}
+
+.story-card p {
+    color: #475569;
+    line-height: 1.8;
+}
+
+.footer {
+    padding: 2rem 0 3rem;
+    color: #94a3b8;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    nav {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+    .grid-two {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero {
+        padding-top: 3.5rem;
+    }
+    header {
+        padding-bottom: 0.5rem;
+    }
+    .site-brand {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}
