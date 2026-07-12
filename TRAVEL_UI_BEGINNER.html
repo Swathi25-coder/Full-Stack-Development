@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Discovery - Learning Project</title>
+    <style>
+        /* ===== RESET & BASICS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* ===== NAVBAR (Flexbox) ===== */
+        /* Concept: Use flexbox to create horizontal layout with space-between */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: #1a2b4d;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: #ffd700;
+            font-size: 1.5em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: white;
+            padding: 8px 20px;
+            border: 2px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background: white;
+            color: #1a2b4d;
+        }
+
+        .btn-signup {
+            background: #ffd700;
+            color: #1a2b4d;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-signup:hover {
+            background: #ffed4e;
+            transform: scale(1.05);
+        }
+
+        /* ===== HERO SECTION ===== */
+        /* Concept: Background image, overlay, centered content */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200') center/cover;
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        /* ===== SEARCH FORM ===== */
+        .search-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 15px;
+            max-width: 900px;
+            color: #333;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .form-group input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 5px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-search {
+            align-self: flex-end;
+            background: #1a2b4d;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn-search:hover {
+            background: #0d1a30;
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        /* Concept: CSS Grid for horizontal card layout */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            padding: 60px 40px;
+            background: #f9f9f9;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #1a2b4d;
+        }
+
+        .feature-card p {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* ===== DESTINATIONS SECTION ===== */
+        .section-header {
+            padding: 40px 40px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            font-size: 2em;
+            color: #1a2b4d;
+        }
+
+        .destinations {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            padding: 0 40px 60px;
+        }
+
+        /* ===== DESTINATION CARD ===== */
+        /* Concept: Image overlay, absolute positioning, hover effects */
+        .destination-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            cursor: pointer;
+            group: true;
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .destination-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Dark overlay on hover */
+        .destination-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            color: white;
+            transition: background 0.3s ease;
+        }
+
+        .destination-card:hover .destination-overlay {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .destination-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .destination-category {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .destination-price {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        /* Heart button - absolute positioning */
+        .heart-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: white;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .heart-btn:hover {
+            transform: scale(1.1);
+            background: #ffd700;
+        }
+
+        /* ===== PROMO SECTION ===== */
+        .promo {
+            background: linear-gradient(135deg, #1a2b4d 0%, #2d4a7b 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 40px;
+            border-radius: 10px;
+        }
+
+        .promo h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .promo p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .promo-code {
+            background: white;
+            color: #1a2b4d;
+            padding: 15px 25px;
+            border-radius: 5px;
+            display: inline-block;
+            font-weight: bold;
+            margin-right: 20px;
+            font-size: 1.1em;
+        }
+
+        .btn-book {
+            background: #ffd700;
+            color: #1a2b4d;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .btn-book:hover {
+            background: #ffed4e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #1a2b4d;
+            color: white;
+            padding: 50px 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: #ffd700;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #2d4a7b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            transition: background 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: #ffd700;
+            color: #1a2b4d;
+        }
+
+        .footer-bottom {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2d4a7b;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .features {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .destinations {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .search-form {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            footer {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .destinations {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+            }
+
+            .promo {
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav>
+        <div class="logo">✈️ Travel Discovery</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#flights">Flights</a></li>
+            <li><a href="#hotels">Hotels</a></li>
+            <li><a href="#buses">Buses</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <button class="btn-login">Login</button>
+            <button class="btn-signup">Sign Up</button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+        <h1>Discover Your Next Journey</h1>
+        <p>Search and compare the best flights, hotels and buses</p>
+        
+        <form class="search-form">
+            <div class="form-group">
+                <label>From</label>
+                <input type="text" placeholder="Delhi (DEL)">
+            </div>
+            <div class="form-group">
+                <label>To</label>
+                <input type="text" placeholder="Goa (GOI)">
+            </div>
+            <div class="form-group">
+                <label>Depart</label>
+                <input type="date">
+            </div>
+            <div class="form-group">
+                <label>Return</label>
+                <input type="date">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-search">Search Flights</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- ===== FEATURES SECTION ===== -->
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">✈️</div>
+            <h3>Best Flight Deals</h3>
+            <p>Compare and book the cheapest flights</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🏨</div>
+            <h3>Top Hotel Offers</h3>
+            <p>Find the best hotels at great prices</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🚌</div>
+            <h3>Bus Bookings</h3>
+            <p>Book bus tickets easily online</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎁</div>
+            <h3>Exciting Offers</h3>
+            <p>Grab discounts and exclusive deals</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎧</div>
+            <h3>24/7 Support</h3>
+            <p>We are here to help you anytime</p>
+        </div>
+    </section>
+
+    <!-- ===== DESTINATIONS SECTION ===== -->
+    <div class="section-header">
+        <h2>Popular Destinations</h2>
+        <a href="#" style="color: #0066cc; text-decoration: none; font-weight: bold;">View All →</a>
+    </div>
+
+    <section class="destinations">
+        <!-- Destination Card 1 -->
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400&h=300&fit=crop" alt="Goa">
+            <div class="destination-overlay">
+                <div class="destination-name">Goa</div>
+                <div class="destination-category">Beach Paradise</div>
+                <div class="destination-price">From ₹2,999</div>
+            </div>
+            <button class="heart-btn">🤍</button>
+        </div>
+
+        <!-- Destination Card 2 -->
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Manali">
+            <div class="destination-overlay">
+                <div class="destination-name">Manali</div>
+                <div class="destination-category">Hills & Adventure</div>
+                <div class="destination-price">From ₹4,799</div>
+            </div>
+            <button class="heart-btn">🤍</button>
+        </div>
+
+        <!-- Destination Card 3 -->
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1505228395891-9a51e7e86e81?w=400&h=300&fit=crop" alt="Agra">
+            <div class="destination-overlay">
+                <div class="destination-name">Agra</div>
+                <div class="destination-category">Historical Marvel</div>
+                <div class="destination-price">From ₹3,199</div>
+            </div>
+            <button class="heart-btn">🤍</button>
+        </div>
+
+        <!-- Destination Card 4 -->
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=300&fit=crop" alt="Kerala">
+            <div class="destination-overlay">
+                <div class="destination-name">Kerala</div>
+                <div class="destination-category">God's Own Country</div>
+                <div class="destination-price">From ₹5,499</div>
+            </div>
+            <button class="heart-btn">🤍</button>
+        </div>
+
+        <!-- Destination Card 5 -->
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=300&fit=crop" alt="Amritsar">
+            <div class="destination-overlay">
+                <div class="destination-name">Amritsar</div>
+                <div class="destination-category">Spiritual Journey</div>
+                <div class="destination-price">From ₹3,699</div>
+            </div>
+            <button class="heart-btn">🤍</button>
+        </div>
+
+        <!-- Destination Card 6 -->
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1514632046937-9a6c1f21aaac?w=400&h=300&fit=crop" alt="Hyderabad">
+            <div class="destination-overlay">
+                <div class="destination-name">Hyderabad</div>
+                <div class="destination-category">City of Nizams</div>
+                <div class="destination-price">From ₹1,999</div>
+            </div>
+            <button class="heart-btn">🤍</button>
+        </div>
+    </section>
+
+    <!-- ===== PROMO SECTION ===== -->
+    <section class="promo">
+        <h2>🎉 Get Up to 30% Off</h2>
+        <p>On Flights, Hotels & Bus Bookings</p>
+        <span class="promo-code">Use Code: TRAVEL30</span>
+        <button class="btn-book">Book Now</button>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#flights">Flights</a></li>
+                <li><a href="#hotels">Hotels</a></li>
+                <li><a href="#buses">Buses</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Company</h4>
+            <ul>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#careers">Careers</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#privacy">Privacy Policy</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Support</h4>
+            <ul>
+                <li><a href="#help">Help Center</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#terms">Terms & Conditions</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <a href="#facebook">f</a>
+                <a href="#twitter">𝕏</a>
+                <a href="#instagram">📷</a>
+                <a href="#linkedin">in</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Travel Discovery. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
