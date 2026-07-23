@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Stack Dev — Logbook</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700&family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --paper: #EEF1EC;
+            --ink: #16342E;
+            --ink-soft: #3C5A50;
+            --tab: #D9A93B;
+            --tab-dark: #B5852A;
+            --code-bg: #0F2620;
+            --code-text: #CFE8DA;
+            --line: #c9d2c7;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .masthead {
+            padding: 70px 24px 50px;
+            text-align: center;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .masthead .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-bottom: 14px;
+        }
+
+        .masthead h1 {
+            font-family: 'Bitter', serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            margin: 0 0 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .masthead p {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--ink-soft);
+            margin: 4px 0;
+        }
+
+        .log {
+            max-width: 880px;
+            margin: 60px auto 100px;
+            padding: 0 24px;
+            position: relative;
+        }
+
+        .log::before {
+            content: "";
+            position: absolute;
+            left: 52px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--line);
+        }
+
+        @media (max-width:600px) {
+            .log::before {
+                left: 20px;
+            }
+        }
+
+        .unit-heading {
+            font-family: 'Bitter', serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin: 50px 0 24px 84px;
+            color: var(--ink);
+        }
+
+        @media (max-width:600px) {
+            .unit-heading {
+                margin-left: 48px;
+            }
+        }
+
+        .entry {
+            position: relative;
+            display: flex;
+            gap: 24px;
+            margin-bottom: 22px;
+            padding-left: 84px;
+        }
+
+        @media (max-width:600px) {
+            .entry {
+                padding-left: 48px;
+                gap: 14px;
+            }
+        }
+
+        .entry::before {
+            content: "";
+            position: absolute;
+            left: 46px;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--paper);
+            border: 2px solid var(--tab-dark);
+        }
+
+        @media (max-width:600px) {
+            .entry::before {
+                left: 14px;
+            }
+        }
+
+        .entry.done::before {
+            background: var(--tab);
+            border-color: var(--tab-dark);
+        }
+
+        .card {
+            flex: 1;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--tab);
+            border-radius: 4px;
+            padding: 16px 20px;
+            transition: transform .15s ease, box-shadow .15s ease;
+        }
+
+        a.card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        a.card-link:hover .card {
+            transform: translateX(4px);
+            box-shadow: 0 4px 14px rgba(22, 52, 46, 0.12);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.02rem;
+            color: var(--ink);
+        }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 3px 8px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        .card-sub {
+            margin-top: 6px;
+            font-size: 0.86rem;
+            color: var(--ink-soft);
+        }
+
+        .no-link .card {
+            border-left-color: var(--line);
+            color: var(--ink-soft);
+        }
+
+        .no-link .card-title {
+            color: var(--ink-soft);
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--ink-soft);
+            padding: 30px 20px 60px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="masthead">
+        <div class="eyebrow">Full Stack Web Development</div>
+        <h1>Course</h1>
+        <p>Unit 1 — HTML & CSS</p>
+    </div>
+
+    <div class="log">
+
+        <div class="unit-heading">Unit 1 · HTML &amp; CSS Foundations</div>
+
+        <div class="entry done">
+            <a class="card-link" href="notes/unit1-day1.html">
+                <div class="card">
+                    <div class="card-top">
+                        <span class="card-title">Day 1 — Intro &amp; Setup with VS Code</span>
+                        <span class="tag">.html</span>
+                    </div>
+                    <div class="card-sub">HTML basic tags, fonts, hyperlinks, lists</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="entry">
+            <a class="card-link" href="notes/unit1-day2.html">
+                <div class="card">
+                    <div class="card-top">
+                        <span class="card-title">Day 2 — Tables, Images &amp; Layout Attributes</span>
+                        <span class="tag">.html</span>
+                    </div>
+                    <div class="card-sub">Table tags, image tag, break, align attribute</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="entry">
+            <a class="card-link" href="notes/unit1-day3.html">
+                <div class="card">
+                    <div class="card-top">
+                        <span class="card-title">Day 3 — Frames &amp; Forms</span>
+                        <span class="tag">.html</span>
+                    </div>
+                    <div class="card-sub">frameset, frame, iframe, form</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="entry">
+            <a class="card-link" href="notes/unit1-day4.html">
+                <div class="card">
+                    <div class="card-top">
+                        <span class="card-title">Day 4 — HTML5 &amp; Document Structure</span>
+                        <span class="tag">.html5</span>
+                    </div>
+                    <div class="card-sub">Embracing HTML5, structure changes, open media</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="entry">
+            <a class="card-link" href="notes/unit1-day5.html">
+                <div class="card">
+                    <div class="card-top">
+                        <span class="card-title">Day 5 — CSS Fundamentals</span>
+                        <span class="tag">.css</span>
+                    </div>
+                    <div class="card-sub">Cascading Style Sheets — intro</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="entry no-link">
+            <div class="card">
+                <div class="card-top">
+                    <span class="card-title">Day 6 — CSS3 Properties &amp; Reference</span>
+                    <span class="tag">todo</span>
+                </div>
+                <div class="card-sub">CSS syntax, property reference, CSS3 features — notes pending</div>
+            </div>
+        </div>
+    </div>
+    <div class="log">
+
+        <div class="unit-heading">Unit 2 Java Script &amp; CSS Foundations</div>
+
+        <div class="entry done">
+            <a class="card-link" href="unit2-day1.html">
+                <div class="card">
+                    <div class="card-top">
+                        <span class="card-title">Day 1 —Getting Started with JavaScript</span>
+                        <span class="tag">.js</span>
+                    </div>
+                    <div class="card-sub">JS essentials, logic statements, loops</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="entry">
+            <a class="card-link" href="notes/unit2-day2.html">
+                <div class="card">
+                    <div class="card-top">
+                        <span class="card-title">Day 2 — Variables &amp; Data Types</span>
+                        <span class="tag">.js</span>
+                    </div>
+                    <div class="card-sub">Variables, data types, and type conversion</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="entry">
+            <a class="card-link" href="notes/unit2-day3.html">
+                <div class="card">
+                    <div class="card-top">
+                        <span class="card-title">Day 3 — Operators &amp; Expressions</span>
+                        <span class="tag">.js</span>
+                    </div>
+                    <div class="card-sub">Arithmetic, comparison, and logical operators </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="entry">
+            <a class="card-link" href="notes/unit2-day4.html">
+                <div class="card">
+                    <div class="card-top">
+                        <span class="card-title">Day 4 — Control Flow</span>
+                        <span class="tag">.js</span>
+                    </div>
+                    <div class="card-sub">Embracing HTML5, structure changes, open media</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="entry">
+            <a class="card-link" href="notes/unit2-day5.html">
+                <div class="card">
+                    <div class="card-top">
+                        <span class="card-title">Day 5 — CSS Fundamentals</span>
+                        <span class="tag">.css</span>
+                    </div>
+                    <div class="card-sub">Cascading Style Sheets — intro</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="entry no-link">
+            <div class="card">
+                <div class="card-top">
+                    <span class="card-title">Day 6 — CSS3 Properties &amp; Reference</span>
+                    <span class="tag">todo</span>
+                </div>
+                <div class="card-sub">CSS syntax, property reference, CSS3 features — notes pending</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        updated as we go · push daily via git
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Essentials — Notes</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+
+<div class="notes-wrapper">
+
+  <h1>JavaScript Essentials</h1>
+  <p class="subtitle">Complete Learning Material</p>
+
+  <p>This chapter covers two core building blocks: <strong>variables &amp; primitive data types</strong> (how we store values) and <strong>operators</strong> (how we compute with and compare those values).</p>
+
+  <h2>1. Variables</h2>
+  <h3>1.1 What is a variable?</h3>
+  <p>A variable is a named storage location whose value can change while the program runs.</p>
+  <pre class="code">firstname = "Maaike";
+x = 2;
+firstname = "Edward";
+x = 7;</pre>
+
+  <h3>1.2 Declaring variables: let, var, const</h3>
+  <pre class="code">let nr1 = 12;
+var nr2 = 8;
+const PI = 3.14159;</pre>
+  <table class="ref">
+    <tr><th>Keyword</th><th>Behavior</th></tr>
+    <tr><td>let</td><td>Block-scoped, can be reassigned</td></tr>
+    <tr><td>var</td><td>Function/global-scoped, older &amp; more error-prone — avoid in new code</td></tr>
+    <tr><td>const</td><td>Block-scoped, cannot be reassigned</td></tr>
+  </table>
+  <pre class="code">const someConstant = 3;
+someConstant = 4; // ❌ throws at runtime</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>Uncaught TypeError: Assignment to constant variable.</pre>
+  <div class="note-box">Recommendation for beginners: use <code>const</code> by default, <code>let</code> when the value will change, and avoid <code>var</code> except when reading legacy code.</div>
+
+  <h3>1.3 Variable naming conventions</h3>
+  <ul>
+    <li>Start names with a letter, _, or $ — never a digit.</li>
+    <li>No spaces; use camelCase for multi-word names (e.g. <code>ageOfBuyer</code>).</li>
+    <li>Use descriptive names: <code>age</code>, <code>totalPrice</code> instead of <code>x</code>, <code>y</code>.</li>
+  </ul>
+
+  <h2>2. Primitive Data Types</h2>
+  <p>JavaScript is loosely typed — a value's type is determined at assignment, not declared explicitly. There are seven primitive types: string, number, bigint, boolean, symbol, undefined, null.</p>
+
+  <h3>2.1 Strings</h3>
+  <pre class="code">let singleString = 'Hi there!';
+let doubleString = "How are you?";</pre>
+  <p>Be careful with quotes inside strings:</p>
+  <pre class="code">let funActivity = 'Let's learn JavaScript'; // ❌ the ' in Let's ends the string early</pre>
+  <pre class="code">let funActivity = "Let's learn JavaScript"; // ✅ double quotes allow an unescaped single quote inside</pre>
+
+  <h3>2.1.1 Template literals and interpolation</h3>
+  <pre class="code">let language = "JavaScript";
+let message = `Let's learn ${language}`;
+console.log(message);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>Let's learn JavaScript</pre>
+
+  <h3>2.1.2 Escape characters</h3>
+  <pre class="code">let str3 = "New \nline.";
+let str4 = "I'm containing a backslash: \\!";
+console.log(str3);
+console.log(str4);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>New
+line.
+I'm containing a backslash: \!</pre>
+
+  <h3>2.2 Numbers</h3>
+  <p>JavaScript has a single numeric type: a 64-bit floating-point number, covering integers, decimals, exponentials, octal, hexadecimal, and binary.</p>
+  <pre class="code">let intNr  = 1;
+let decNr  = 1.5;
+let expNr  = 1.4e15;
+let octNr  = 0o10;   // 8
+let hexNr  = 0x3E8;  // 1000
+let binNr  = 0b101;  // 5</pre>
+
+  <h3>2.3 Big integers (bigint)</h3>
+  <pre class="code">let bigNr = 90071992547409920n;  // BigInt
+let intNr = 1;
+let result = bigNr + intNr;   // ❌ mixing BigInt and Number</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>Uncaught TypeError: Cannot mix BigInt and other types, use explicit conversions.</pre>
+
+  <h3>2.4 Booleans</h3>
+  <pre class="code">let bool1 = false;
+let bool2 = true;
+let objectIsDeleted = false;
+let lightIsOn = true;</pre>
+
+  <h3>2.5 Symbols</h3>
+  <pre class="code">let str1 = "JavaScript is fun!";
+let str2 = "JavaScript is fun!";
+console.log("These two strings are the same:", str1 === str2);
+
+let sym1 = Symbol("JavaScript is fun!");
+let sym2 = Symbol("JavaScript is fun!");
+console.log("These two Symbols are the same:", sym1 === sym2);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>These two strings are the same: true
+These two Symbols are the same: false</pre>
+  <p>Strings with the same characters are equal. Symbols are always unique, even with an identical description — often used as unique object keys.</p>
+
+  <h3>2.6 undefined</h3>
+  <pre class="code">let unassigned;
+console.log(unassigned);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>undefined</pre>
+
+  <h3>2.7 null</h3>
+  <pre class="code">let terribleThingToDo = undefined;
+let lastName;
+console.log("Same undefined:", lastName === terribleThingToDo);
+
+let betterOption = null;
+console.log("Same null:", lastName === betterOption);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>Same undefined: true
+Same null: false</pre>
+  <div class="note-box"><code>typeof null</code> returns <code>"object"</code> — a well-known historical bug kept for backward compatibility.</div>
+
+  <h2>3. Inspecting and Converting Data Types</h2>
+  <h3>3.1 typeof</h3>
+  <pre class="code">let str    = "Hello";
+let nr     = 7;
+let bigNr  = 12345678901234n;
+let bool   = true;
+let sym    = Symbol("unique");
+let undef  = undefined;
+let unknown = null;
+console.log("str", typeof str);
+console.log("nr", typeof nr);
+console.log("bigNr", typeof bigNr);
+console.log("bool", typeof bool);
+console.log("sym", typeof sym);
+console.log("undef", typeof undef);
+console.log("unknown", typeof unknown);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>str string
+nr number
+bigNr bigint
+bool boolean
+sym symbol
+undef undefined
+unknown object</pre>
+
+  <h3>3.2 Implicit type coercion</h3>
+  <pre class="code">let nr1 = 2;
+let nr2 = "2";
+console.log(nr1 * nr2);   // string coerced to number
+console.log(nr1 + nr2);   // + also means string concatenation</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>4
+22</pre>
+
+  <h3>3.3 Explicit conversions: String(), Number(), Boolean()</h3>
+  <pre class="code">let nrToStr = 6;
+nrToStr = String(nrToStr);
+console.log(nrToStr, typeof nrToStr);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>6 string</pre>
+
+  <pre class="code">let strToNr = "12";
+strToNr = Number(strToNr);
+console.log(strToNr, typeof strToNr);
+
+let nullToNr = Number(null);
+let emptyStrToNr = Number("");
+console.log("null", nullToNr, typeof nullToNr);
+console.log("empty string", emptyStrToNr, typeof emptyStrToNr);
+
+let strToNr2 = Number("hello");
+console.log(strToNr2, typeof strToNr2);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>12 number
+null 0 number
+empty string 0 number
+NaN number</pre>
+  <p><code>NaN</code> stands for "Not a Number" — its type is still <code>number</code>.</p>
+
+  <pre class="code">let strToBool = Boolean("any string will return true");
+console.log(strToBool, typeof strToBool);
+
+let strToBool2 = Boolean("false");
+let emptyStrToBool = Boolean("");
+console.log(strToBool2, typeof strToBool2);
+console.log(emptyStrToBool, typeof emptyStrToBool);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>true boolean
+true boolean
+false boolean</pre>
+  <div class="note-box">Boolean conversion is <code>false</code> only for: <code>null</code>, <code>undefined</code>, <code>0</code>, <code>NaN</code>, and <code>""</code> (empty string). Everything else — even the string <code>"false"</code> — converts to <code>true</code>.</div>
+
+  <h2>4. Arithmetic Operators</h2>
+  <p>Covered: <code>+ - * / ** % ++ --</code></p>
+
+  <h3>4.1 Addition (+)</h3>
+  <pre class="code">let result1 = 12 + 14;
+console.log(result1);
+let result2 = "Hello " + "addition";
+console.log(result2);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>26
+Hello addition</pre>
+
+  <h3>4.2 Subtraction (-)</h3>
+  <pre class="code">let result1 = 20 - 4;
+let result2 = "Hi" - 3;
+console.log(result1, result2);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>16 NaN</pre>
+
+  <h3>4.3 Multiplication (*)</h3>
+  <pre class="code">let result1 = 15 * 10;
+let result2 = "Hi" * 3;
+console.log(result1, result2);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>150 NaN</pre>
+
+  <h3>4.4 Division (/)</h3>
+  <pre class="code">let result1 = 30 / 5;
+console.log(result1);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>6</pre>
+
+  <h3>4.5 Exponentiation (**)</h3>
+  <pre class="code">let result1 = 2 ** 3;
+console.log(result1);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>8</pre>
+
+  <h3>4.6 Modulus (%)</h3>
+  <pre class="code">console.log(`10 % 3 = ${10 % 3}`);
+console.log(`8 % 2 = ${8 % 2}`);
+console.log(`15 % 4 = ${15 % 4}`);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>10 % 3 = 1
+8 % 2 = 0
+15 % 4 = 3</pre>
+
+  <h3>4.7 Increment and decrement</h3>
+  <pre class="code">let nr1 = 4;
+nr1++;
+console.log(nr1);
+
+let nr2 = 4;
+nr2--;
+console.log(nr2);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>5
+3</pre>
+
+  <h4>Prefix vs postfix</h4>
+  <pre class="code">let nr = 2;
+console.log(nr++); // returns OLD value, then increments
+console.log(nr);
+
+let nr_b = 2;
+console.log(++nr_b); // increments FIRST, then returns</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>2
+3
+3</pre>
+
+  <pre class="code">let nr1 = 4, nr2 = 5, nr3 = 2;
+console.log(nr1++ + ++nr2 * nr3++);
+// ++nr2 -> 6 ; nr3++ uses 2 (then becomes 3) ; 6*2=12
+// nr1++ uses 4 (then becomes 5) ; 4+12=16</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>16</pre>
+
+  <h3>4.8 Operator precedence</h3>
+  <pre class="code">let result = 3 + 4 * 2 / 8;
+console.log(result); // 4*2=8, 8/8=1, 3+1=4</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>4</pre>
+
+  <h2>5. Assignment Operators</h2>
+  <pre class="code">let x = 2;
+x += 2;   // 4
+x -= 2;   // 2
+x *= 6;   // 12
+x /= 3;   // 4
+x **= 2;  // 16
+x %= 3;   // 1
+console.log(x);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>1</pre>
+
+  <h2>6. Comparison Operators</h2>
+  <h3>6.1 Equality: == vs ===</h3>
+  <pre class="code">let x = 5;
+let y = "5";
+console.log(x == y);
+console.log(x === y);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>true
+false</pre>
+  <div class="note-box">Best practice: always prefer <code>===</code> and <code>!==</code> over <code>==</code> and <code>!=</code>.</div>
+
+  <h3>6.2 Relational operators</h3>
+  <pre class="code">let x = 5, y = 6;
+console.log(y > x, x > y, y > y, y >= y);
+console.log(y < x, x < y, y < y, y <= y);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>true false false true
+false true false true</pre>
+
+  <h2>7. Logical Operators</h2>
+  <pre class="code">let x = 1, y = 2, z = 3;
+
+console.log(x < y && y < z); // AND
+console.log(x > y && y < z);
+
+console.log(x > y || y < z); // OR
+console.log(x > y || y > z);
+
+let flag = false;
+console.log(!flag);          // NOT</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>true
+false
+true
+false
+true</pre>
+
+  <h2>8. Small Integrated Example</h2>
+  <pre class="code">let miles = 130;
+const MILES_TO_KM = 1.60934;
+let km = miles * MILES_TO_KM;
+let message = `The distance of ${km} kms is equal to ${miles} miles`;
+let isLongTrip = km > 200 && km < 500;
+console.log(message);
+console.log("Is this a long trip?", isLongTrip);</pre>
+  <pre class="output"><span class="label">OUTPUT:</span>The distance of 209.2142 kms is equal to 130 miles
+Is this a long trip? true</pre>
+  <p>This ties together <code>let</code>/<code>const</code>, number primitives, arithmetic (<code>*</code>), template literals, and comparison + logical operators (<code>&gt;</code>, <code>&lt;</code>, <code>&amp;&amp;</code>) in one program.</p>
+
+</div>
+
+</body>
+</html>

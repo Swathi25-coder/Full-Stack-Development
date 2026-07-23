@@ -49,3 +49,78 @@ footer {
     padding: 15px;
     margin-top: 40px;
 }
+
+/* Notes page styles */
+.notes-wrapper {
+    max-width: 900px;
+    margin: 40px auto;
+    background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+    padding: 36px 48px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(44,62,80,0.08);
+    text-align: left;
+    color: #22303f;
+}
+
+.notes-wrapper h1 {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #0b2b4a;
+    margin-bottom: 6px;
+}
+
+.notes-wrapper .subtitle {
+    color: #537089;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+pre.code {
+    background: #0b2b4a;
+    color: #e6f2ff;
+    padding: 14px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', Consolas, monospace;
+    line-height: 1.5;
+    margin: 12px 0;
+}
+
+pre.output {
+    background: #f3f6f9;
+    color: #0b2b4a;
+    padding: 10px 12px;
+    border-left: 4px solid #bcdffb;
+    border-radius: 6px;
+    margin: 8px 0 18px 0;
+}
+
+.note-box {
+    background: linear-gradient(90deg,#fff8e6,#fff);
+    border-left: 4px solid #ffcf66;
+    padding: 12px 14px;
+    border-radius: 6px;
+    margin: 14px 0;
+    color: #4a3b00;
+}
+
+table.ref {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px 0;
+}
+
+table.ref th, table.ref td {
+    border: 1px solid #e6eef6;
+    padding: 8px 10px;
+}
+
+table.ref th {
+    background: #f0f6fb;
+    color: #14344a;
+    text-align: left;
+}
+
+@media (max-width: 640px) {
+    .notes-wrapper { padding: 20px; margin: 20px; }
+    .course { width: auto; }
+}
